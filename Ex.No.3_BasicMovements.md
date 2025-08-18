@@ -18,52 +18,47 @@
 ### Program 
 ```
 using UnityEngine;
-public class TransformOperations : MonoBehaviour
-{
-    public Transform object1; // Object for translation
-    public Transform object2; // Object for rotation
-    public Transform object3; // Object for scaling
 
-    public float moveSpeed = 2f;  // Speed of translation
-    public float rotateSpeed = 50f; // Speed of rotation
-    public float scaleSpeed = 0.5f; // Speed of scaling
+public class BallMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f; // Movement speed
+    public float jumpForce = 5f; // Jump strength
+    private Rigidbody rb;
+
+    void Start()
+    {
+        // Get the Rigidbody component
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
-        // Translate (Move) object1 along the X-axis- Time.deltaTime to make movement smooth across all frame rates
-        if (object1 != null)
+        // Get player input (WASD or Arrow Keys)
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
+        // Apply movement
+        Vector3 movement = new Vector3(moveX, 0f, moveZ) * moveSpeed;
+        Vector3 newVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
+        rb.linearVelocity = newVelocity;
+
+        // Jump (optional)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-           // object1.position += Vector3.right * moveSpeed;
-               object1.Translate(0.02f,0,0);
-
-        }
-
-        // Rotate object2 around the Y-axis
-        if (object2 != null)
-        {
-            //object2.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
-            //object2.Rotate(0,0.02f.0);
-        }
-
-        // Scale object3 up and down
-        if (object3 != null)
-        {
-           // float scaleChange = Mathf.PingPong(Time.time * scaleSpeed, 1f) + 0.5f; // generates a value that moves back and forth between 0 and length
-           // object3.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
-            object3.localScale+=new Vector3(0.02f.0.02f,0);
-
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+
+    // Check if the ball is touching the ground
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.6f);
+    }
 }
+
 ```
 ### Output:
-
-
-
-
-
-
-
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/7637b53b-023e-49c5-abf7-5c547c786635" />
 
 ### Result:
 Thus the basic movement is learned through scripting
