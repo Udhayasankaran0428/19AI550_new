@@ -24,16 +24,14 @@ To write a program to simulate the process of seek and Flee behavior in Unity wi
 14. Stop the program
     
 ### Program:
+Seek
 ```
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class seekScript : MonoBehaviour
+public class Script1 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Transform target;  // The object to seek
-    public float speed = 5f;  // Movement speed
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Transform target;
+    public float speed;
     void Start()
     {
         
@@ -42,52 +40,39 @@ public class seekScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null) return;  // Exit if no target is assigned
-
-        // Calculate the desired direction
         Vector3 direction = (target.position - transform.position).normalized;
-
-        // Move the object towards the target
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;   
     }
 }
+
+
 ```
+
+Flee
 ```
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class fleeScript : MonoBehaviour
+public class Script2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Transform target;  // The object to seek
-    public float speed = 5f;  // Movement speed
+    public Transform target;   
+    public float speed = 5f;   
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
+    }
+    
     void Update()
     {
-        if (target == null) return;  // Exit if no target is assigned
-
-        // Calculate the desired direction
-        Vector3 direction = (transform.position-target.position).normalized;
-
-        // Move the object towards the target
+        if (target == null) return;  
+        Vector3 direction = (transform.position - target.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
     }
 }
+
 ```
 ### Output:
-
-
-
-
-
-
-
+Seek and Flee
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/22049db6-f52c-4be1-b74f-ef63e1f0dca9" />
 
 
 ### Result:
