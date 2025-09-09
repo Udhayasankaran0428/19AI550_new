@@ -55,14 +55,7 @@ public class PlayerJump : MonoBehaviour
 }
 ```
 ### Output:
-
-
-
-
-
-
-
-
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/976763a4-5fed-4c73-8ae5-de9ed7d55c1f" />
 
 ### Result:
 Thus the simple jumping behavior was implemented successfully.
