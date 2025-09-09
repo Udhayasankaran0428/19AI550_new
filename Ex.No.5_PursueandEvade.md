@@ -28,9 +28,9 @@ To write a program to simulate the process of Pursue and Evade behavior in Unity
     Player: Set Speed = 5.
     Pursuer: Set Speed = 4.
     Evader: Set Speed = 6.
-5. Write a script for  Player_movement behavior and save it
+5. Write a script for  Player_movement behavior and save it.
+
 **Player**
-```
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,9 +52,7 @@ public class Player : MonoBehaviour
         
     }
 }
-```
 **Evader script**
-```
 using UnityEngine;
 using UnityEngine.AI;
 public class Evade : MonoBehaviour
@@ -81,9 +79,8 @@ public class Evade : MonoBehaviour
         evade();          
      }
 }
-```
+
 **Pursuer script**
-```
 using UnityEngine;
 using UnityEngine.AI;
 public class Pursue: MonoBehaviour
@@ -110,7 +107,7 @@ public class Pursue: MonoBehaviour
      }
 }
 
-```
+
 7. Attach the Script to each player,pursuer and Evader.
    Drag & Drop the Target from the Hierarchy into the "Target" field in the script component ( For pursuer and Evader).
 12. Run the game 
