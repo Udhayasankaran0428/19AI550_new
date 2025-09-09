@@ -29,19 +29,20 @@ To write a program to simulate the process of Pursue and Evade behavior in Unity
     Pursuer: Set Speed = 4.
     Evader: Set Speed = 6.
 5. Write a script for  Player_movement behavior and save it
-
+**Player**
+```
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed;
     void Start()
     {
-        float xdir = Input.GetAxis("horizontal") * speed;
-        float zdir = Input.GetAxis("vertical") * speed;
+        float xdir = Input.GetAxis("Horizontal") * speed;
+        float zdir = Input.GetAxis("Vertical") * speed;
         transform.position=new Vector3(xdir,zdir);
     }
 
@@ -51,8 +52,12 @@ public class Player_movement : MonoBehaviour
         
     }
 }
+```
 **Evader script**
-public class Evader : MonoBehaviour
+```
+using UnityEngine;
+using UnityEngine.AI;
+public class Evade : MonoBehaviour
 {
     // Start is called before the first frame update
     public NavMeshAgent agent;
@@ -76,8 +81,12 @@ public class Evader : MonoBehaviour
         evade();          
      }
 }
+```
 **Pursuer script**
-public class Pursuer: MonoBehaviour
+```
+using UnityEngine;
+using UnityEngine.AI;
+public class Pursue: MonoBehaviour
 {
     // Start is called before the first frame update
     NavMeshAgent agent;
@@ -100,6 +109,8 @@ public class Pursuer: MonoBehaviour
         pursue();          
      }
 }
+
+```
 7. Attach the Script to each player,pursuer and Evader.
    Drag & Drop the Target from the Hierarchy into the "Target" field in the script component ( For pursuer and Evader).
 12. Run the game 
@@ -107,14 +118,7 @@ public class Pursuer: MonoBehaviour
     
 ```
 ### Output:
-
-
-
-
-
-
-
-
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ca45855c-e812-4629-b4a1-54dc48e24869" />
 
 ### Result:
 Thus the simple pursue and evade behavior was implemented successfully.
