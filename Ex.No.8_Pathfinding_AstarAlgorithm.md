@@ -1,6 +1,6 @@
 # Ex.No: 8  Implementation of Path finding using A* algorithm
 ### DATE:                                                                            
-### REGISTER NUMBER : 
+### REGISTER NUMBER : 212222110051
 ### AIM: 
 To write a program to create graph using waypoints and use A* algorithm to find path between source and destination.
 ### Algorithm:
@@ -16,8 +16,8 @@ To write a program to create graph using waypoints and use A* algorithm to find 
 8. Create a Game Object for Player ( choose capsule or any others) and attach the script to move player from start to end waypoints
 ```  
 ### Program:
-```
 **#1.Waypoint.cs**
+```
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -34,7 +34,9 @@ public class Waypoint : MonoBehaviour {
         }
     }
 }
+```
 **#2. WaypointGraph.cs**
+```cs
 using UnityEngine;
 
 public class WaypointGraph : MonoBehaviour {
@@ -44,7 +46,9 @@ public class WaypointGraph : MonoBehaviour {
         allWaypoints = FindObjectsOfType<Waypoint>();
     }
 }
+```
 **#3.Pathfinding.cs**
+```cs
 using System.Collections.Generic;
 using UnityEngine;
 public class Pathfinding : MonoBehaviour {
@@ -103,8 +107,9 @@ public class Pathfinding : MonoBehaviour {
         return path;
     }
 }
-
+```
 **#4.AICharacter.cs**
+```cs
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -131,20 +136,18 @@ public class AICharacter : MonoBehaviour {
         }
     }
 }
-Check the following
-1. Waypoints placed in scene
-2. Neighbors set manually via Inspector
-3. WaypointGraph script on a manager
-4. AICharacter assigned a start and goal
+```
+Check the following:
+1. Waypoints placed in scene.
+2. Neighbors set manually via Inspector.
+3. WaypointGraph script on a manager.
+4. AICharacter assigned a start and goal.
 ### Output:
 
+<img width="907" height="394" alt="image" src="https://github.com/user-attachments/assets/6ad7dc20-ae9e-4a9c-9c0e-52fbcba6d738" />
 
 
-
-
-
-
-
+<img width="905" height="396" alt="image" src="https://github.com/user-attachments/assets/0554739f-aa7c-48f6-b4aa-31c508d2ffe4" />
 
 ### Result:
 Thus the pathfinding algorithm was sucessfully implemented.
