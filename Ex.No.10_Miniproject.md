@@ -55,97 +55,71 @@ HurdleSpawner.cs
 
 ```
 ### Program:
-```
 player.cs
+```
 using UnityEngine;
 using UnityEngine.UI;
-
 public class PlayerControl : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     private Rigidbody2D rb;
-
     [Header("Ground Check")]
     private bool isGrounded = true;
-    
     [Header("Game Management")]
     public GameManager gameManager; 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
-        // Find the GameManager in the scene if we forgot to link it
         if (gameManager == null)
         {
-            // --- FIXED WARNING ---
             gameManager = Object.FindAnyObjectByType<GameManager>();
         }
     }
 
     void Update()
     {
-        // Get input from A/D keys or Left/Right arrows (-1 for left, 1 for right)
         float moveInput = Input.GetAxisRaw("Horizontal");
-        
-        // Set the player's physics velocity
-        // --- FIXED WARNING ---
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
-
-        // --- Jumping (this is the same as before) ---
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && isGrounded)
         {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             isGrounded = false;
         }
     }
-
-    // This function checks for SOLID collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the player landed on the "Ground"
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
-
-        // Check if the player ran into a "Hurdle"
         if (collision.gameObject.CompareTag("Hurdle"))
         {
-            // Tell the GameManager that the game is over
             if (gameManager != null)
             {
                 gameManager.GameOver();
             }
-            
-            // --- FIXED WARNING ---
             rb.linearVelocity = Vector2.zero; // Stop the player
             enabled = false; // Disable this script
         }
     }
 
-    // This function checks for TRIGGER collisions (like coins)
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the object we hit has the "Coin" tag
         if(other.CompareTag("coin"))
         {
-            // Tell the GameManager to add score
             if (gameManager != null)
             {
                 gameManager.AddScore(1);
             }
-            
-            // Destroy the coin object
             Destroy(other.gameObject); 
         }  
     }
 }
 ```
-```
 GameManager.cs
+```
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
@@ -165,22 +139,15 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.SetActive(false);
         }
-        
         Time.timeScale = 1;
-
-        // Find the player if we forgot to link it
         if (player == null)
         {
             player = Object.FindAnyObjectByType<PlayerControl>();
         }
-
-        // --- THIS IS THE NEW LINE ---
-        // Set the score text to "SCORE: 0" when the game starts
         if (scoreText != null)
         {
             scoreText.text = "SCORE: " + score;
         }
-        // -----------------------------
     }
 
     public void AddScore(int amount)
@@ -192,7 +159,6 @@ public class GameManager : MonoBehaviour
             scoreText.text = "SCORE: " + score;
         }
     }
-
     public void GameOver()
     {
         Time.timeScale = 0; 
@@ -207,59 +173,44 @@ public class GameManager : MonoBehaviour
             player.enabled = false;
         }
     }
-
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 ```
+HurdleSpawner.cs
 ```
-HurdleSpawner
-
 using System.Collections;
 using UnityEngine;
 
 public class HurdleSpawner : MonoBehaviour
 {
-    
-    public GameObject hurdlePrefab;
-    
     public float spawnRate = 2f;
-    
     public float minY = -1f;
     public float maxY = 1f;
-
-
     public float moveSpeed = 5f;
-
     void Start()
     {
-        
         StartCoroutine(SpawnHurdles());
     }
-
     private IEnumerator SpawnHurdles()
     {
-        
         while (true)
         {
-            
             yield return new WaitForSeconds(spawnRate);
             GameObject newHurdle = Instantiate(hurdlePrefab, transform.position, Quaternion.identity);
             float randomY = Random.Range(minY, maxY);
             newHurdle.transform.position += new Vector3(0, randomY, 0);
             newHurdle.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-moveSpeed, 0);
-            
             Destroy(newHurdle, 10f);
         }
     }
 }
-
 ```
 ### Output:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/0f3fce40-617f-4144-8219-de210a8e078a" />
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/672777bb-6769-4811-b634-9ace4e4942f6" />
 
 ### Result:
-Thus the game was developed using Unity and adopted _-----------AI technology.
+Thus the game was developed using Unity and it is successfully executed.
