@@ -1,8 +1,8 @@
-# Ex.No: 10  Implementation of 2D/3D game -------------------
+# Ex.No: 10  Implementation of 2D/3D game of Hurdle Jumper
 ### DATE:                                                                            
-### REGISTER NUMBER : 
+### REGISTER NUMBER : 212222110051
 ### AIM: 
-To develop a game -------------------------in Unity 
+To develop a game Hurdle Jumper in Unity 
 ### Algorithm:
 ```
 Player.cs
