@@ -51,6 +51,7 @@ public class AIPathfinder : MonoBehaviour
         agent.SetDestination(target.position);
     }
 }
+
 #Moving Obstacle
 using System.Collections;
 using System.Collections.Generic;
@@ -79,14 +80,7 @@ For smooth movement(optional)  -> use
 float movement = Mathf.PingPong(Time.time * moveSpeed, moveDistance) - moveDistance / 2;
 transform.position = startPos + new Vector3(movement, 0, 0);
 ### Output:
-
-
-
-
-
-
-
-
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/bed76fce-2284-42a3-a579-810877c550d7" />
 
 ### Result:
 Thus the simple path finding  behavior was implemented using AI navigation successfully.
