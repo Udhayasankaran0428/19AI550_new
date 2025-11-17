@@ -1,5 +1,5 @@
 # Ex.No: 10  Implementation of 2D/3D game of Hurdle Jumper
-### DATE:                                                                            
+### DATE: 21/10/2025                                                                          
 ### REGISTER NUMBER : 212222110051
 ### AIM: 
 To develop a game Hurdle Jumper in Unity 
